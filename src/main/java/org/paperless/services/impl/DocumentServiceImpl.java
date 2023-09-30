@@ -1,5 +1,6 @@
 package org.paperless.services.impl;
 
+import org.paperless.persistence.entity.Document;
 import org.paperless.persistence.repository.DocumentRepository;
 import org.paperless.services.DocumentService;
 import org.paperless.services.dtos.DocumentDTO;
@@ -36,21 +37,23 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public void save(DocumentDTO documentDTO) {
-
+        documentRepository.save(documentMapper.toEntity(documentDTO));
     }
 
     @Override
     public List<DocumentDTO> getList() {
-        return null;
+        List<Document> documentList = documentRepository.findAll();
+        return documentMapper.toDto(documentList);
     }
 
     @Override
     public void update(DocumentDTO documentDTO) {
-
+        documentRepository.deleteById(documentDTO.getId().longValue());
+        documentRepository.save(documentMapper.toEntity(documentDTO));
     }
 
     @Override
     public void delete(DocumentDTO documentDTO) {
-
+        documentRepository.delete(documentMapper.toEntity(documentDTO));
     }
 }

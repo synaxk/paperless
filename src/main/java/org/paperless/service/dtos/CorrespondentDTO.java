@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+
+import lombok.Builder;
+import lombok.Data;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,7 +21,8 @@ import javax.annotation.Generated;
 /**
  * Correspondent
  */
-
+@Data
+@Builder
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-23T13:14:42.637996Z[Etc/UTC]")
 public class CorrespondentDTO {
 

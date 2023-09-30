@@ -7,6 +7,9 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import lombok.Builder;
+import lombok.Data;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -20,7 +23,8 @@ import javax.annotation.Generated;
 /**
  * Document
  */
-
+@Data
+@Builder
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-23T13:14:42.637996Z[Etc/UTC]")
 public class DocumentDTO {
 

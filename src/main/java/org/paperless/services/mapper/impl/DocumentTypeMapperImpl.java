@@ -3,7 +3,9 @@ package org.paperless.services.mapper.impl;
 import org.paperless.persistence.entity.DocumentType;
 import org.paperless.services.dtos.DocumentTypeDTO;
 import org.paperless.services.mapper.DocumentTypeMapper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DocumentTypeMapperImpl extends AbstractMapper<DocumentType, DocumentTypeDTO> implements DocumentTypeMapper {
     @Override
     public DocumentTypeDTO toDto(DocumentType documentType) {

@@ -12,7 +12,7 @@ import org.springframework.context.annotation.FullyQualifiedAnnotationBeanNameGe
     nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class
 )
 @ComponentScan(
-    basePackages = {"org.paperless", "org.paperless.api" , "org.paperless.configuration"},
+    basePackages = {"org.paperless", "org.paperless.api" , "org.paperless.configuration", "org.paperless.persistence", "org.paperless.services"},
     nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class
 )
 public class OpenApiGeneratorApplication {

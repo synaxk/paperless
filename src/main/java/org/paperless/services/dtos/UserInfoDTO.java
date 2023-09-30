@@ -4,6 +4,9 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Arrays;
+
+import lombok.Builder;
+import lombok.Data;
 import org.openapitools.jackson.nullable.JsonNullable;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -14,6 +17,9 @@ import javax.annotation.Generated;
  * UserInfo
  */
 
+
+@Data
+@Builder
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-23T13:14:42.637996Z[Etc/UTC]")
 public class UserInfoDTO {
 

@@ -12,6 +12,9 @@ public class CorrespondentMapperImpl extends AbstractMapper<Correspondent, Corre
     public CorrespondentDTO toDto(Correspondent correspondent) {
         return CorrespondentDTO.builder()
                 .id(correspondent.getId())
+                //slug
+                //name
+                //match
                 .matchingAlgorithm(correspondent.getMatchingAlgorithm())
                 .isInsensitive(correspondent.isInsensitive())
                 .documentCount(correspondent.getDocumentCount())
@@ -27,6 +30,7 @@ public class CorrespondentMapperImpl extends AbstractMapper<Correspondent, Corre
                 .isInsensitive(correspondentDTO.getIsInsensitive())
                 .documentCount(correspondentDTO.getDocumentCount())
                 .lastCorrespondence(correspondentDTO.getLastCorrespondence())
+                //List<Document>
                 .build();
     }
 }

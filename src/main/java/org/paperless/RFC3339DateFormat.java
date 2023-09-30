@@ -1,4 +1,4 @@
-package org.openapitools;
+package org.paperless;
 
 import com.fasterxml.jackson.databind.util.StdDateFormat;
 

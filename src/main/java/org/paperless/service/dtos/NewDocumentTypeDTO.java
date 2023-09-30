@@ -1,4 +1,4 @@
-package org.paperless.model;
+package org.paperless.service.dtos;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +15,7 @@ import javax.annotation.Generated;
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-23T13:14:42.637996Z[Etc/UTC]")
-public class NewDocumentType {
+public class NewDocumentTypeDTO {
 
   private JsonNullable<String> name = JsonNullable.<String>undefined();
 
@@ -25,7 +25,7 @@ public class NewDocumentType {
 
   private Boolean isInsensitive;
 
-  public NewDocumentType name(String name) {
+  public NewDocumentTypeDTO name(String name) {
     this.name = JsonNullable.of(name);
     return this;
   }
@@ -45,7 +45,7 @@ public class NewDocumentType {
     this.name = name;
   }
 
-  public NewDocumentType match(String match) {
+  public NewDocumentTypeDTO match(String match) {
     this.match = JsonNullable.of(match);
     return this;
   }
@@ -65,7 +65,7 @@ public class NewDocumentType {
     this.match = match;
   }
 
-  public NewDocumentType matchingAlgorithm(Long matchingAlgorithm) {
+  public NewDocumentTypeDTO matchingAlgorithm(Long matchingAlgorithm) {
     this.matchingAlgorithm = matchingAlgorithm;
     return this;
   }
@@ -85,7 +85,7 @@ public class NewDocumentType {
     this.matchingAlgorithm = matchingAlgorithm;
   }
 
-  public NewDocumentType isInsensitive(Boolean isInsensitive) {
+  public NewDocumentTypeDTO isInsensitive(Boolean isInsensitive) {
     this.isInsensitive = isInsensitive;
     return this;
   }
@@ -113,7 +113,7 @@ public class NewDocumentType {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NewDocumentType newDocumentType = (NewDocumentType) o;
+    NewDocumentTypeDTO newDocumentType = (NewDocumentTypeDTO) o;
     return equalsNullable(this.name, newDocumentType.name) &&
         equalsNullable(this.match, newDocumentType.match) &&
         Objects.equals(this.matchingAlgorithm, newDocumentType.matchingAlgorithm) &&

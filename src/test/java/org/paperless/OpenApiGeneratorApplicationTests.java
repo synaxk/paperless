@@ -1,4 +1,4 @@
-package org.openapitools;
+package org.paperless;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

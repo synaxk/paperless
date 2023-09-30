@@ -1,4 +1,4 @@
-package org.paperless.model;
+package org.paperless.service.dtos;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +15,7 @@ import javax.annotation.Generated;
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-23T13:14:42.637996Z[Etc/UTC]")
-public class NewTag {
+public class NewTagDTO {
 
   private JsonNullable<String> name = JsonNullable.<String>undefined();
 
@@ -29,7 +29,7 @@ public class NewTag {
 
   private Boolean isInboxTag;
 
-  public NewTag name(String name) {
+  public NewTagDTO name(String name) {
     this.name = JsonNullable.of(name);
     return this;
   }
@@ -49,7 +49,7 @@ public class NewTag {
     this.name = name;
   }
 
-  public NewTag color(String color) {
+  public NewTagDTO color(String color) {
     this.color = JsonNullable.of(color);
     return this;
   }
@@ -69,7 +69,7 @@ public class NewTag {
     this.color = color;
   }
 
-  public NewTag match(String match) {
+  public NewTagDTO match(String match) {
     this.match = JsonNullable.of(match);
     return this;
   }
@@ -89,7 +89,7 @@ public class NewTag {
     this.match = match;
   }
 
-  public NewTag matchingAlgorithm(Long matchingAlgorithm) {
+  public NewTagDTO matchingAlgorithm(Long matchingAlgorithm) {
     this.matchingAlgorithm = matchingAlgorithm;
     return this;
   }
@@ -109,7 +109,7 @@ public class NewTag {
     this.matchingAlgorithm = matchingAlgorithm;
   }
 
-  public NewTag isInsensitive(Boolean isInsensitive) {
+  public NewTagDTO isInsensitive(Boolean isInsensitive) {
     this.isInsensitive = isInsensitive;
     return this;
   }
@@ -129,7 +129,7 @@ public class NewTag {
     this.isInsensitive = isInsensitive;
   }
 
-  public NewTag isInboxTag(Boolean isInboxTag) {
+  public NewTagDTO isInboxTag(Boolean isInboxTag) {
     this.isInboxTag = isInboxTag;
     return this;
   }
@@ -157,7 +157,7 @@ public class NewTag {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NewTag newTag = (NewTag) o;
+    NewTagDTO newTag = (NewTagDTO) o;
     return equalsNullable(this.name, newTag.name) &&
         equalsNullable(this.color, newTag.color) &&
         equalsNullable(this.match, newTag.match) &&

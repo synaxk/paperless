@@ -1,4 +1,4 @@
-package at.fhtw.swkom.paperless.persistence.entity;
+package org.paperless.persistence.entity;
 
 import lombok.*;
 

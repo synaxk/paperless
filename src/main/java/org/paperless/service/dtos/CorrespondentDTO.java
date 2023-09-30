@@ -1,4 +1,4 @@
-package org.paperless.model;
+package org.paperless.service.dtos;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-23T13:14:42.637996Z[Etc/UTC]")
-public class Correspondent {
+public class CorrespondentDTO {
 
   private Long id;
 
@@ -39,7 +39,7 @@ public class Correspondent {
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime lastCorrespondence;
 
-  public Correspondent id(Long id) {
+  public CorrespondentDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -59,7 +59,7 @@ public class Correspondent {
     this.id = id;
   }
 
-  public Correspondent slug(String slug) {
+  public CorrespondentDTO slug(String slug) {
     this.slug = JsonNullable.of(slug);
     return this;
   }
@@ -79,7 +79,7 @@ public class Correspondent {
     this.slug = slug;
   }
 
-  public Correspondent name(String name) {
+  public CorrespondentDTO name(String name) {
     this.name = JsonNullable.of(name);
     return this;
   }
@@ -99,7 +99,7 @@ public class Correspondent {
     this.name = name;
   }
 
-  public Correspondent match(String match) {
+  public CorrespondentDTO match(String match) {
     this.match = JsonNullable.of(match);
     return this;
   }
@@ -119,7 +119,7 @@ public class Correspondent {
     this.match = match;
   }
 
-  public Correspondent matchingAlgorithm(Long matchingAlgorithm) {
+  public CorrespondentDTO matchingAlgorithm(Long matchingAlgorithm) {
     this.matchingAlgorithm = matchingAlgorithm;
     return this;
   }
@@ -139,7 +139,7 @@ public class Correspondent {
     this.matchingAlgorithm = matchingAlgorithm;
   }
 
-  public Correspondent isInsensitive(Boolean isInsensitive) {
+  public CorrespondentDTO isInsensitive(Boolean isInsensitive) {
     this.isInsensitive = isInsensitive;
     return this;
   }
@@ -159,7 +159,7 @@ public class Correspondent {
     this.isInsensitive = isInsensitive;
   }
 
-  public Correspondent documentCount(Long documentCount) {
+  public CorrespondentDTO documentCount(Long documentCount) {
     this.documentCount = documentCount;
     return this;
   }
@@ -179,7 +179,7 @@ public class Correspondent {
     this.documentCount = documentCount;
   }
 
-  public Correspondent lastCorrespondence(OffsetDateTime lastCorrespondence) {
+  public CorrespondentDTO lastCorrespondence(OffsetDateTime lastCorrespondence) {
     this.lastCorrespondence = lastCorrespondence;
     return this;
   }
@@ -207,7 +207,7 @@ public class Correspondent {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Correspondent correspondent = (Correspondent) o;
+    CorrespondentDTO correspondent = (CorrespondentDTO) o;
     return Objects.equals(this.id, correspondent.id) &&
         equalsNullable(this.slug, correspondent.slug) &&
         equalsNullable(this.name, correspondent.name) &&

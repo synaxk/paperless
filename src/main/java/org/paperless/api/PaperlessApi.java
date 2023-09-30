@@ -5,16 +5,16 @@
  */
 package org.paperless.api;
 
-import org.paperless.model.Correspondent;
+import org.paperless.service.dtos.CorrespondentDTO;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.paperless.model.DocTag;
-import org.paperless.model.Document;
-import org.paperless.model.DocumentType;
-import org.paperless.model.NewCorrespondent;
-import org.paperless.model.NewDocumentType;
-import org.paperless.model.NewTag;
+import org.paperless.service.dtos.DocTagDTO;
+import org.paperless.service.dtos.DocumentDTO;
+import org.paperless.service.dtos.DocumentTypeDTO;
+import org.paperless.service.dtos.NewCorrespondentDTO;
+import org.paperless.service.dtos.NewDocumentTypeDTO;
+import org.paperless.service.dtos.NewTagDTO;
 import java.time.OffsetDateTime;
-import org.paperless.model.UserInfo;
+import org.paperless.service.dtos.UserInfoDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -35,7 +35,7 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-23T13:14:42.637996Z[Etc/UTC]")
 @Validated
 @Tag(name = "Login", description = "the Login API")
-public interface ApiApi {
+public interface PaperlessApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
@@ -111,7 +111,7 @@ public interface ApiApi {
         consumes = { "application/json", "text/json", "application/*+json" }
     )
     default ResponseEntity<Void> createCorrespondent(
-        @Parameter(name = "NewCorrespondent", description = "") @Valid @RequestBody(required = false) NewCorrespondent newCorrespondent
+        @Parameter(name = "NewCorrespondent", description = "") @Valid @RequestBody(required = false) NewCorrespondentDTO newCorrespondent
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
@@ -137,7 +137,7 @@ public interface ApiApi {
         consumes = { "application/json", "text/json", "application/*+json" }
     )
     default ResponseEntity<Void> createDocumentType(
-        @Parameter(name = "NewDocumentType", description = "") @Valid @RequestBody(required = false) NewDocumentType newDocumentType
+        @Parameter(name = "NewDocumentType", description = "") @Valid @RequestBody(required = false) NewDocumentTypeDTO newDocumentType
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
@@ -163,7 +163,7 @@ public interface ApiApi {
         consumes = { "application/json", "text/json", "application/*+json" }
     )
     default ResponseEntity<Void> createTag(
-        @Parameter(name = "NewTag", description = "") @Valid @RequestBody(required = false) NewTag newTag
+        @Parameter(name = "NewTag", description = "") @Valid @RequestBody(required = false) NewTagDTO newTag
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
@@ -502,7 +502,7 @@ public interface ApiApi {
         consumes = { "application/json", "text/json", "application/*+json" }
     )
     default ResponseEntity<Void> getToken(
-        @Parameter(name = "UserInfo", description = "") @Valid @RequestBody(required = false) UserInfo userInfo
+        @Parameter(name = "UserInfo", description = "") @Valid @RequestBody(required = false) UserInfoDTO userInfo
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
@@ -578,7 +578,7 @@ public interface ApiApi {
     )
     default ResponseEntity<Void> updateCorrespondent(
         @Parameter(name = "id", description = "", required = true, in = ParameterIn.PATH) @PathVariable("id") Integer id,
-        @Parameter(name = "Correspondent", description = "") @Valid @RequestBody(required = false) Correspondent correspondent
+        @Parameter(name = "Correspondent", description = "") @Valid @RequestBody(required = false) CorrespondentDTO correspondent
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
@@ -606,7 +606,7 @@ public interface ApiApi {
     )
     default ResponseEntity<Void> updateDocument(
         @Parameter(name = "id", description = "", required = true, in = ParameterIn.PATH) @PathVariable("id") Integer id,
-        @Parameter(name = "Document", description = "") @Valid @RequestBody(required = false) Document document
+        @Parameter(name = "Document", description = "") @Valid @RequestBody(required = false) DocumentDTO document
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
@@ -634,7 +634,7 @@ public interface ApiApi {
     )
     default ResponseEntity<Void> updateDocumentType(
         @Parameter(name = "id", description = "", required = true, in = ParameterIn.PATH) @PathVariable("id") Integer id,
-        @Parameter(name = "DocumentType", description = "") @Valid @RequestBody(required = false) DocumentType documentType
+        @Parameter(name = "DocumentType", description = "") @Valid @RequestBody(required = false) DocumentTypeDTO documentType
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
@@ -662,7 +662,7 @@ public interface ApiApi {
     )
     default ResponseEntity<Void> updateTag(
         @Parameter(name = "id", description = "", required = true, in = ParameterIn.PATH) @PathVariable("id") Integer id,
-        @Parameter(name = "DocTag", description = "") @Valid @RequestBody(required = false) DocTag docTag
+        @Parameter(name = "DocTag", description = "") @Valid @RequestBody(required = false) DocTagDTO docTag
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 

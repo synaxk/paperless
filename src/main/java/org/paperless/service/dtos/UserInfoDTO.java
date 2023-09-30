@@ -1,4 +1,4 @@
-package org.paperless.model;
+package org.paperless.service.dtos;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,13 +15,13 @@ import javax.annotation.Generated;
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-23T13:14:42.637996Z[Etc/UTC]")
-public class UserInfo {
+public class UserInfoDTO {
 
   private JsonNullable<String> username = JsonNullable.<String>undefined();
 
   private JsonNullable<String> password = JsonNullable.<String>undefined();
 
-  public UserInfo username(String username) {
+  public UserInfoDTO username(String username) {
     this.username = JsonNullable.of(username);
     return this;
   }
@@ -41,7 +41,7 @@ public class UserInfo {
     this.username = username;
   }
 
-  public UserInfo password(String password) {
+  public UserInfoDTO password(String password) {
     this.password = JsonNullable.of(password);
     return this;
   }
@@ -69,7 +69,7 @@ public class UserInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserInfo userInfo = (UserInfo) o;
+    UserInfoDTO userInfo = (UserInfoDTO) o;
     return equalsNullable(this.username, userInfo.username) &&
         equalsNullable(this.password, userInfo.password);
   }

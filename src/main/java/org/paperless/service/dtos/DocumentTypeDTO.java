@@ -1,4 +1,4 @@
-package org.paperless.model;
+package org.paperless.service.dtos;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +15,7 @@ import javax.annotation.Generated;
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-23T13:14:42.637996Z[Etc/UTC]")
-public class DocumentType {
+public class DocumentTypeDTO {
 
   private Long id;
 
@@ -31,7 +31,7 @@ public class DocumentType {
 
   private Long documentCount;
 
-  public DocumentType id(Long id) {
+  public DocumentTypeDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -51,7 +51,7 @@ public class DocumentType {
     this.id = id;
   }
 
-  public DocumentType slug(String slug) {
+  public DocumentTypeDTO slug(String slug) {
     this.slug = JsonNullable.of(slug);
     return this;
   }
@@ -71,7 +71,7 @@ public class DocumentType {
     this.slug = slug;
   }
 
-  public DocumentType name(String name) {
+  public DocumentTypeDTO name(String name) {
     this.name = JsonNullable.of(name);
     return this;
   }
@@ -91,7 +91,7 @@ public class DocumentType {
     this.name = name;
   }
 
-  public DocumentType match(String match) {
+  public DocumentTypeDTO match(String match) {
     this.match = JsonNullable.of(match);
     return this;
   }
@@ -111,7 +111,7 @@ public class DocumentType {
     this.match = match;
   }
 
-  public DocumentType matchingAlgorithm(Long matchingAlgorithm) {
+  public DocumentTypeDTO matchingAlgorithm(Long matchingAlgorithm) {
     this.matchingAlgorithm = matchingAlgorithm;
     return this;
   }
@@ -131,7 +131,7 @@ public class DocumentType {
     this.matchingAlgorithm = matchingAlgorithm;
   }
 
-  public DocumentType isInsensitive(Boolean isInsensitive) {
+  public DocumentTypeDTO isInsensitive(Boolean isInsensitive) {
     this.isInsensitive = isInsensitive;
     return this;
   }
@@ -151,7 +151,7 @@ public class DocumentType {
     this.isInsensitive = isInsensitive;
   }
 
-  public DocumentType documentCount(Long documentCount) {
+  public DocumentTypeDTO documentCount(Long documentCount) {
     this.documentCount = documentCount;
     return this;
   }
@@ -179,7 +179,7 @@ public class DocumentType {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DocumentType documentType = (DocumentType) o;
+    DocumentTypeDTO documentType = (DocumentTypeDTO) o;
     return Objects.equals(this.id, documentType.id) &&
         equalsNullable(this.slug, documentType.slug) &&
         equalsNullable(this.name, documentType.name) &&

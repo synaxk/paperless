@@ -1,4 +1,4 @@
-package org.paperless.model;
+package org.paperless.service.dtos;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +15,7 @@ import javax.annotation.Generated;
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-23T13:14:42.637996Z[Etc/UTC]")
-public class DocTag {
+public class DocTagDTO {
 
   private Long id;
 
@@ -35,7 +35,7 @@ public class DocTag {
 
   private Long documentCount;
 
-  public DocTag id(Long id) {
+  public DocTagDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -55,7 +55,7 @@ public class DocTag {
     this.id = id;
   }
 
-  public DocTag slug(String slug) {
+  public DocTagDTO slug(String slug) {
     this.slug = JsonNullable.of(slug);
     return this;
   }
@@ -75,7 +75,7 @@ public class DocTag {
     this.slug = slug;
   }
 
-  public DocTag name(String name) {
+  public DocTagDTO name(String name) {
     this.name = JsonNullable.of(name);
     return this;
   }
@@ -95,7 +95,7 @@ public class DocTag {
     this.name = name;
   }
 
-  public DocTag color(String color) {
+  public DocTagDTO color(String color) {
     this.color = JsonNullable.of(color);
     return this;
   }
@@ -115,7 +115,7 @@ public class DocTag {
     this.color = color;
   }
 
-  public DocTag match(String match) {
+  public DocTagDTO match(String match) {
     this.match = JsonNullable.of(match);
     return this;
   }
@@ -135,7 +135,7 @@ public class DocTag {
     this.match = match;
   }
 
-  public DocTag matchingAlgorithm(Long matchingAlgorithm) {
+  public DocTagDTO matchingAlgorithm(Long matchingAlgorithm) {
     this.matchingAlgorithm = matchingAlgorithm;
     return this;
   }
@@ -155,7 +155,7 @@ public class DocTag {
     this.matchingAlgorithm = matchingAlgorithm;
   }
 
-  public DocTag isInsensitive(Boolean isInsensitive) {
+  public DocTagDTO isInsensitive(Boolean isInsensitive) {
     this.isInsensitive = isInsensitive;
     return this;
   }
@@ -175,7 +175,7 @@ public class DocTag {
     this.isInsensitive = isInsensitive;
   }
 
-  public DocTag isInboxTag(Boolean isInboxTag) {
+  public DocTagDTO isInboxTag(Boolean isInboxTag) {
     this.isInboxTag = isInboxTag;
     return this;
   }
@@ -195,7 +195,7 @@ public class DocTag {
     this.isInboxTag = isInboxTag;
   }
 
-  public DocTag documentCount(Long documentCount) {
+  public DocTagDTO documentCount(Long documentCount) {
     this.documentCount = documentCount;
     return this;
   }
@@ -223,7 +223,7 @@ public class DocTag {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DocTag docTag = (DocTag) o;
+    DocTagDTO docTag = (DocTagDTO) o;
     return Objects.equals(this.id, docTag.id) &&
         equalsNullable(this.slug, docTag.slug) &&
         equalsNullable(this.name, docTag.name) &&

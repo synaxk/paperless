@@ -1,4 +1,4 @@
-package org.paperless.model;
+package org.paperless.service.dtos;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-23T13:14:42.637996Z[Etc/UTC]")
-public class Document {
+public class DocumentDTO {
 
   private Integer id;
 
@@ -57,7 +57,7 @@ public class Document {
 
   private JsonNullable<String> archivedFileName = JsonNullable.<String>undefined();
 
-  public Document id(Integer id) {
+  public DocumentDTO id(Integer id) {
     this.id = id;
     return this;
   }
@@ -77,7 +77,7 @@ public class Document {
     this.id = id;
   }
 
-  public Document correspondent(Integer correspondent) {
+  public DocumentDTO correspondent(Integer correspondent) {
     this.correspondent = JsonNullable.of(correspondent);
     return this;
   }
@@ -97,7 +97,7 @@ public class Document {
     this.correspondent = correspondent;
   }
 
-  public Document documentType(Integer documentType) {
+  public DocumentDTO documentType(Integer documentType) {
     this.documentType = JsonNullable.of(documentType);
     return this;
   }
@@ -117,7 +117,7 @@ public class Document {
     this.documentType = documentType;
   }
 
-  public Document storagePath(Integer storagePath) {
+  public DocumentDTO storagePath(Integer storagePath) {
     this.storagePath = JsonNullable.of(storagePath);
     return this;
   }
@@ -137,7 +137,7 @@ public class Document {
     this.storagePath = storagePath;
   }
 
-  public Document title(String title) {
+  public DocumentDTO title(String title) {
     this.title = JsonNullable.of(title);
     return this;
   }
@@ -157,7 +157,7 @@ public class Document {
     this.title = title;
   }
 
-  public Document content(String content) {
+  public DocumentDTO content(String content) {
     this.content = JsonNullable.of(content);
     return this;
   }
@@ -177,12 +177,12 @@ public class Document {
     this.content = content;
   }
 
-  public Document tags(List<Integer> tags) {
+  public DocumentDTO tags(List<Integer> tags) {
     this.tags = JsonNullable.of(tags);
     return this;
   }
 
-  public Document addTagsItem(Integer tagsItem) {
+  public DocumentDTO addTagsItem(Integer tagsItem) {
     if (this.tags == null || !this.tags.isPresent()) {
       this.tags = JsonNullable.of(new ArrayList<>());
     }
@@ -205,7 +205,7 @@ public class Document {
     this.tags = tags;
   }
 
-  public Document created(OffsetDateTime created) {
+  public DocumentDTO created(OffsetDateTime created) {
     this.created = created;
     return this;
   }
@@ -225,7 +225,7 @@ public class Document {
     this.created = created;
   }
 
-  public Document createdDate(OffsetDateTime createdDate) {
+  public DocumentDTO createdDate(OffsetDateTime createdDate) {
     this.createdDate = createdDate;
     return this;
   }
@@ -245,7 +245,7 @@ public class Document {
     this.createdDate = createdDate;
   }
 
-  public Document modified(OffsetDateTime modified) {
+  public DocumentDTO modified(OffsetDateTime modified) {
     this.modified = modified;
     return this;
   }
@@ -265,7 +265,7 @@ public class Document {
     this.modified = modified;
   }
 
-  public Document added(OffsetDateTime added) {
+  public DocumentDTO added(OffsetDateTime added) {
     this.added = added;
     return this;
   }
@@ -285,7 +285,7 @@ public class Document {
     this.added = added;
   }
 
-  public Document archiveSerialNumber(String archiveSerialNumber) {
+  public DocumentDTO archiveSerialNumber(String archiveSerialNumber) {
     this.archiveSerialNumber = JsonNullable.of(archiveSerialNumber);
     return this;
   }
@@ -305,7 +305,7 @@ public class Document {
     this.archiveSerialNumber = archiveSerialNumber;
   }
 
-  public Document originalFileName(String originalFileName) {
+  public DocumentDTO originalFileName(String originalFileName) {
     this.originalFileName = JsonNullable.of(originalFileName);
     return this;
   }
@@ -325,7 +325,7 @@ public class Document {
     this.originalFileName = originalFileName;
   }
 
-  public Document archivedFileName(String archivedFileName) {
+  public DocumentDTO archivedFileName(String archivedFileName) {
     this.archivedFileName = JsonNullable.of(archivedFileName);
     return this;
   }
@@ -353,7 +353,7 @@ public class Document {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Document document = (Document) o;
+    DocumentDTO document = (DocumentDTO) o;
     return Objects.equals(this.id, document.id) &&
         equalsNullable(this.correspondent, document.correspondent) &&
         equalsNullable(this.documentType, document.documentType) &&

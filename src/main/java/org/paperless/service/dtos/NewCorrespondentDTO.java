@@ -1,4 +1,4 @@
-package org.paperless.model;
+package org.paperless.service.dtos;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-23T13:14:42.637996Z[Etc/UTC]")
-public class NewCorrespondent {
+public class NewCorrespondentDTO {
 
   private JsonNullable<String> name = JsonNullable.<String>undefined();
 
@@ -35,7 +35,7 @@ public class NewCorrespondent {
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime lastCorrespondence;
 
-  public NewCorrespondent name(String name) {
+  public NewCorrespondentDTO name(String name) {
     this.name = JsonNullable.of(name);
     return this;
   }
@@ -55,7 +55,7 @@ public class NewCorrespondent {
     this.name = name;
   }
 
-  public NewCorrespondent match(String match) {
+  public NewCorrespondentDTO match(String match) {
     this.match = JsonNullable.of(match);
     return this;
   }
@@ -75,7 +75,7 @@ public class NewCorrespondent {
     this.match = match;
   }
 
-  public NewCorrespondent matchingAlgorithm(Long matchingAlgorithm) {
+  public NewCorrespondentDTO matchingAlgorithm(Long matchingAlgorithm) {
     this.matchingAlgorithm = matchingAlgorithm;
     return this;
   }
@@ -95,7 +95,7 @@ public class NewCorrespondent {
     this.matchingAlgorithm = matchingAlgorithm;
   }
 
-  public NewCorrespondent isInsensitive(Boolean isInsensitive) {
+  public NewCorrespondentDTO isInsensitive(Boolean isInsensitive) {
     this.isInsensitive = isInsensitive;
     return this;
   }
@@ -115,7 +115,7 @@ public class NewCorrespondent {
     this.isInsensitive = isInsensitive;
   }
 
-  public NewCorrespondent documentCount(Long documentCount) {
+  public NewCorrespondentDTO documentCount(Long documentCount) {
     this.documentCount = documentCount;
     return this;
   }
@@ -135,7 +135,7 @@ public class NewCorrespondent {
     this.documentCount = documentCount;
   }
 
-  public NewCorrespondent lastCorrespondence(OffsetDateTime lastCorrespondence) {
+  public NewCorrespondentDTO lastCorrespondence(OffsetDateTime lastCorrespondence) {
     this.lastCorrespondence = lastCorrespondence;
     return this;
   }
@@ -163,7 +163,7 @@ public class NewCorrespondent {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NewCorrespondent newCorrespondent = (NewCorrespondent) o;
+    NewCorrespondentDTO newCorrespondent = (NewCorrespondentDTO) o;
     return equalsNullable(this.name, newCorrespondent.name) &&
         equalsNullable(this.match, newCorrespondent.match) &&
         Objects.equals(this.matchingAlgorithm, newCorrespondent.matchingAlgorithm) &&

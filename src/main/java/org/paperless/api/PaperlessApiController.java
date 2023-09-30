@@ -12,12 +12,12 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-23T13:14:42.637996Z[Etc/UTC]")
 @Controller
 @RequestMapping("${openapi.mockServer.base-path:}")
-public class ApiApiController implements ApiApi {
+public class PaperlessApiController implements PaperlessApi {
 
     private final NativeWebRequest request;
 
     @Autowired
-    public ApiApiController(NativeWebRequest request) {
+    public PaperlessApiController(NativeWebRequest request) {
         this.request = request;
     }
 

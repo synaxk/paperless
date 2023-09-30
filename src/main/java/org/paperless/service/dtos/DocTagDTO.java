@@ -1,30 +1,21 @@
-package org.openapitools.model;
+package org.paperless.model;
 
-import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import java.time.OffsetDateTime;
+
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import org.springframework.format.annotation.DateTimeFormat;
-import java.util.NoSuchElementException;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * Correspondent
+ * DocTag
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-23T13:14:42.637996Z[Etc/UTC]")
-public class Correspondent {
+public class DocTag {
 
   private Long id;
 
@@ -32,18 +23,19 @@ public class Correspondent {
 
   private JsonNullable<String> name = JsonNullable.<String>undefined();
 
+  private JsonNullable<String> color = JsonNullable.<String>undefined();
+
   private JsonNullable<String> match = JsonNullable.<String>undefined();
 
   private Long matchingAlgorithm;
 
   private Boolean isInsensitive;
 
+  private Boolean isInboxTag;
+
   private Long documentCount;
 
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime lastCorrespondence;
-
-  public Correspondent id(Long id) {
+  public DocTag id(Long id) {
     this.id = id;
     return this;
   }
@@ -63,7 +55,7 @@ public class Correspondent {
     this.id = id;
   }
 
-  public Correspondent slug(String slug) {
+  public DocTag slug(String slug) {
     this.slug = JsonNullable.of(slug);
     return this;
   }
@@ -83,7 +75,7 @@ public class Correspondent {
     this.slug = slug;
   }
 
-  public Correspondent name(String name) {
+  public DocTag name(String name) {
     this.name = JsonNullable.of(name);
     return this;
   }
@@ -103,7 +95,27 @@ public class Correspondent {
     this.name = name;
   }
 
-  public Correspondent match(String match) {
+  public DocTag color(String color) {
+    this.color = JsonNullable.of(color);
+    return this;
+  }
+
+  /**
+   * Get color
+   * @return color
+  */
+  
+  @Schema(name = "color", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("color")
+  public JsonNullable<String> getColor() {
+    return color;
+  }
+
+  public void setColor(JsonNullable<String> color) {
+    this.color = color;
+  }
+
+  public DocTag match(String match) {
     this.match = JsonNullable.of(match);
     return this;
   }
@@ -123,7 +135,7 @@ public class Correspondent {
     this.match = match;
   }
 
-  public Correspondent matchingAlgorithm(Long matchingAlgorithm) {
+  public DocTag matchingAlgorithm(Long matchingAlgorithm) {
     this.matchingAlgorithm = matchingAlgorithm;
     return this;
   }
@@ -143,7 +155,7 @@ public class Correspondent {
     this.matchingAlgorithm = matchingAlgorithm;
   }
 
-  public Correspondent isInsensitive(Boolean isInsensitive) {
+  public DocTag isInsensitive(Boolean isInsensitive) {
     this.isInsensitive = isInsensitive;
     return this;
   }
@@ -163,7 +175,27 @@ public class Correspondent {
     this.isInsensitive = isInsensitive;
   }
 
-  public Correspondent documentCount(Long documentCount) {
+  public DocTag isInboxTag(Boolean isInboxTag) {
+    this.isInboxTag = isInboxTag;
+    return this;
+  }
+
+  /**
+   * Get isInboxTag
+   * @return isInboxTag
+  */
+  
+  @Schema(name = "is_inbox_tag", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("is_inbox_tag")
+  public Boolean getIsInboxTag() {
+    return isInboxTag;
+  }
+
+  public void setIsInboxTag(Boolean isInboxTag) {
+    this.isInboxTag = isInboxTag;
+  }
+
+  public DocTag documentCount(Long documentCount) {
     this.documentCount = documentCount;
     return this;
   }
@@ -183,26 +215,6 @@ public class Correspondent {
     this.documentCount = documentCount;
   }
 
-  public Correspondent lastCorrespondence(OffsetDateTime lastCorrespondence) {
-    this.lastCorrespondence = lastCorrespondence;
-    return this;
-  }
-
-  /**
-   * Get lastCorrespondence
-   * @return lastCorrespondence
-  */
-  @Valid 
-  @Schema(name = "last_correspondence", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("last_correspondence")
-  public OffsetDateTime getLastCorrespondence() {
-    return lastCorrespondence;
-  }
-
-  public void setLastCorrespondence(OffsetDateTime lastCorrespondence) {
-    this.lastCorrespondence = lastCorrespondence;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -211,15 +223,16 @@ public class Correspondent {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Correspondent correspondent = (Correspondent) o;
-    return Objects.equals(this.id, correspondent.id) &&
-        equalsNullable(this.slug, correspondent.slug) &&
-        equalsNullable(this.name, correspondent.name) &&
-        equalsNullable(this.match, correspondent.match) &&
-        Objects.equals(this.matchingAlgorithm, correspondent.matchingAlgorithm) &&
-        Objects.equals(this.isInsensitive, correspondent.isInsensitive) &&
-        Objects.equals(this.documentCount, correspondent.documentCount) &&
-        Objects.equals(this.lastCorrespondence, correspondent.lastCorrespondence);
+    DocTag docTag = (DocTag) o;
+    return Objects.equals(this.id, docTag.id) &&
+        equalsNullable(this.slug, docTag.slug) &&
+        equalsNullable(this.name, docTag.name) &&
+        equalsNullable(this.color, docTag.color) &&
+        equalsNullable(this.match, docTag.match) &&
+        Objects.equals(this.matchingAlgorithm, docTag.matchingAlgorithm) &&
+        Objects.equals(this.isInsensitive, docTag.isInsensitive) &&
+        Objects.equals(this.isInboxTag, docTag.isInboxTag) &&
+        Objects.equals(this.documentCount, docTag.documentCount);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -228,7 +241,7 @@ public class Correspondent {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, hashCodeNullable(slug), hashCodeNullable(name), hashCodeNullable(match), matchingAlgorithm, isInsensitive, documentCount, lastCorrespondence);
+    return Objects.hash(id, hashCodeNullable(slug), hashCodeNullable(name), hashCodeNullable(color), hashCodeNullable(match), matchingAlgorithm, isInsensitive, isInboxTag, documentCount);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -241,15 +254,16 @@ public class Correspondent {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Correspondent {\n");
+    sb.append("class DocTag {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    color: ").append(toIndentedString(color)).append("\n");
     sb.append("    match: ").append(toIndentedString(match)).append("\n");
     sb.append("    matchingAlgorithm: ").append(toIndentedString(matchingAlgorithm)).append("\n");
     sb.append("    isInsensitive: ").append(toIndentedString(isInsensitive)).append("\n");
+    sb.append("    isInboxTag: ").append(toIndentedString(isInboxTag)).append("\n");
     sb.append("    documentCount: ").append(toIndentedString(documentCount)).append("\n");
-    sb.append("    lastCorrespondence: ").append(toIndentedString(lastCorrespondence)).append("\n");
     sb.append("}");
     return sb.toString();
   }

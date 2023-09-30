@@ -3,31 +3,24 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-package org.openapitools.api;
+package org.paperless.api;
 
-import org.openapitools.model.Correspondent;
+import org.paperless.model.Correspondent;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.openapitools.model.DocTag;
-import org.openapitools.model.Document;
-import org.openapitools.model.DocumentType;
-import org.openapitools.model.NewCorrespondent;
-import org.openapitools.model.NewDocumentType;
-import org.openapitools.model.NewTag;
+import org.paperless.model.DocTag;
+import org.paperless.model.Document;
+import org.paperless.model.DocumentType;
+import org.paperless.model.NewCorrespondent;
+import org.paperless.model.NewDocumentType;
+import org.paperless.model.NewTag;
 import java.time.OffsetDateTime;
-import org.openapitools.model.UserInfo;
-import io.swagger.v3.oas.annotations.ExternalDocumentation;
+import org.paperless.model.UserInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -35,9 +28,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import javax.validation.constraints.*;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 

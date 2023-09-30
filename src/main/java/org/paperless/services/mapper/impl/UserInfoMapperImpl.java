@@ -1,8 +1,8 @@
-package org.paperless.service.mapper.impl;
+package org.paperless.services.mapper.impl;
 
 import org.paperless.persistence.entity.UserInfo;
-import org.paperless.service.dtos.UserInfoDTO;
-import org.paperless.service.mapper.UserInfoMapper;
+import org.paperless.services.dtos.UserInfoDTO;
+import org.paperless.services.mapper.UserInfoMapper;
 
 public class UserInfoMapperImpl extends AbstractMapper<UserInfo, UserInfoDTO> implements UserInfoMapper {
     @Override

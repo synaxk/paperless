@@ -1,4 +1,4 @@
-package org.paperless.service.mapper;
+package org.paperless.services.mapper;
 
 
 import java.util.List;

@@ -5,16 +5,16 @@
  */
 package org.paperless.api;
 
-import org.paperless.service.dtos.CorrespondentDTO;
+import org.paperless.services.dtos.CorrespondentDTO;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.paperless.service.dtos.DocTagDTO;
-import org.paperless.service.dtos.DocumentDTO;
-import org.paperless.service.dtos.DocumentTypeDTO;
-import org.paperless.service.dtos.NewCorrespondentDTO;
-import org.paperless.service.dtos.NewDocumentTypeDTO;
-import org.paperless.service.dtos.NewTagDTO;
+import org.paperless.services.dtos.DocTagDTO;
+import org.paperless.services.dtos.DocumentDTO;
+import org.paperless.services.dtos.DocumentTypeDTO;
+import org.paperless.services.dtos.NewCorrespondentDTO;
+import org.paperless.services.dtos.NewDocumentTypeDTO;
+import org.paperless.services.dtos.NewTagDTO;
 import java.time.OffsetDateTime;
-import org.paperless.service.dtos.UserInfoDTO;
+import org.paperless.services.dtos.UserInfoDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

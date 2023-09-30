@@ -1,4 +1,4 @@
-package org.paperless.service.dtos;
+package org.paperless.services.dtos;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;

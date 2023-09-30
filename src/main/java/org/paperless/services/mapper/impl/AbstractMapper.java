@@ -1,6 +1,6 @@
-package org.paperless.service.mapper.impl;
+package org.paperless.services.mapper.impl;
 
-import org.paperless.service.mapper.Mapper;
+import org.paperless.services.mapper.Mapper;
 
 import java.util.ArrayList;
 import java.util.List;

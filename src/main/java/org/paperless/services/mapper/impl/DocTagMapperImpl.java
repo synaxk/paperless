@@ -1,8 +1,8 @@
-package org.paperless.service.mapper.impl;
+package org.paperless.services.mapper.impl;
 
 import org.paperless.persistence.entity.DocTag;
-import org.paperless.service.dtos.DocTagDTO;
-import org.paperless.service.mapper.DocTagMapper;
+import org.paperless.services.dtos.DocTagDTO;
+import org.paperless.services.mapper.DocTagMapper;
 
 public class DocTagMapperImpl extends AbstractMapper<DocTag, DocTagDTO> implements DocTagMapper {
     @Override

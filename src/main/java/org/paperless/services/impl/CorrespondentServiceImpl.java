@@ -1,10 +1,20 @@
 package org.paperless.services.impl;
 
+import org.paperless.persistence.repository.CorrespondentRepository;
 import org.paperless.services.dtos.CorrespondentDTO;
+import org.paperless.services.mapper.CorrespondentMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-public class CorrespondentService implements org.paperless.services.CorrespondentService {
+@Component
+public class CorrespondentServiceImpl implements org.paperless.services.CorrespondentService {
+
+    @Autowired
+    private CorrespondentRepository correspondentRepository;
+    @Autowired
+    private CorrespondentMapper correspondentMapper;
     @Override
     public void update(CorrespondentDTO correspondentDTO) {
 

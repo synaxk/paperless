@@ -1,8 +1,8 @@
-package org.paperless.service.mapper.impl;
+package org.paperless.services.mapper.impl;
 
 import org.paperless.persistence.entity.Correspondent;
-import org.paperless.service.dtos.CorrespondentDTO;
-import org.paperless.service.mapper.CorrespondentMapper;
+import org.paperless.services.dtos.CorrespondentDTO;
+import org.paperless.services.mapper.CorrespondentMapper;
 
 public class CorrespondentMapperImpl extends AbstractMapper<Correspondent, CorrespondentDTO> implements CorrespondentMapper {
 

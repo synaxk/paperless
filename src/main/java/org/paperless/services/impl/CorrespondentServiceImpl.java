@@ -2,6 +2,7 @@ package org.paperless.services.impl;
 
 import org.paperless.persistence.entity.Correspondent;
 import org.paperless.persistence.repository.CorrespondentRepository;
+import org.paperless.services.CorrespondentService;
 import org.paperless.services.dtos.CorrespondentDTO;
 import org.paperless.services.mapper.CorrespondentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class CorrespondentServiceImpl implements org.paperless.services.CorrespondentService {
+public class CorrespondentServiceImpl implements CorrespondentService {
 
     @Autowired
     private CorrespondentRepository correspondentRepository;

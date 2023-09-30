@@ -12,7 +12,7 @@ import org.springframework.context.annotation.FullyQualifiedAnnotationBeanNameGe
     nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class
 )
 @ComponentScan(
-    basePackages = {"org.openapitools", "org.openapitools.api" , "org.openapitools.configuration"},
+    basePackages = {"org.paperless", "org.paperless.api" , "org.paperless.configuration"},
     nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class
 )
 public class OpenApiGeneratorApplication {
@@ -21,7 +21,7 @@ public class OpenApiGeneratorApplication {
         SpringApplication.run(OpenApiGeneratorApplication.class, args);
     }
 
-    @Bean(name = "org.openapitools.OpenApiGeneratorApplication.jsonNullableModule")
+    @Bean(name = "org.paperless.OpenApiGeneratorApplication.jsonNullableModule")
     public Module jsonNullableModule() {
         return new JsonNullableModule();
     }

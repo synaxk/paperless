@@ -18,21 +18,23 @@ public class DocumentTypeServiceImpl implements DocumentTypeService {
     private DocumentTypeMapper documentTypeMapper;
     @Override
     public void save(DocumentTypeDTO documentTypeDTO) {
-
+        documentTypeRepository.save(documentTypeMapper.toEntity(documentTypeDTO));
     }
 
     @Override
     public List<DocumentTypeDTO> getList() {
-        return null;
+        List<DocumentType> documentTypeList = documentTypeRepository.findAll();
+        return documentTypeMapper.toDto(documentTypeList);
     }
 
     @Override
     public void update(DocumentTypeDTO documentTypeDTO) {
-
+        documentTypeRepository.deleteById(documentTypeDTO.getId().longValue());
+        documentTypeRepository.save(documentTypeMapper.toEntity(documentTypeDTO));
     }
 
     @Override
     public void delete(DocumentTypeDTO documentTypeDTO) {
-
+        documentTypeRepository.delete(documentTypeMapper.toEntity(documentTypeDTO));
     }
 }

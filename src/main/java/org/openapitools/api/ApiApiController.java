@@ -1,14 +1,51 @@
 package org.openapitools.api;
 
-import org.openapitools.model.Correspondent;
+import org.openapitools.model.AckTasks200Response;
+import org.openapitools.model.AckTasksRequest;
+import org.openapitools.model.BulkEditRequest;
+import org.openapitools.model.CreateCorrespondentRequest;
+import org.openapitools.model.CreateDocumentType200Response;
+import org.openapitools.model.CreateGroupRequest;
+import org.openapitools.model.CreateSavedViewsRequest;
+import org.openapitools.model.CreateStoragePath200Response;
+import org.openapitools.model.CreateStoragePathRequest;
+import org.openapitools.model.CreateTag200Response;
+import org.openapitools.model.CreateTagRequest;
+import org.openapitools.model.CreateUISettings200Response;
+import org.openapitools.model.CreateUISettingsRequest;
+import org.openapitools.model.CreateUserRequest;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.openapitools.model.DocTag;
-import org.openapitools.model.Document;
-import org.openapitools.model.DocumentType;
-import org.openapitools.model.NewCorrespondent;
-import org.openapitools.model.NewDocumentType;
-import org.openapitools.model.NewTag;
+import org.openapitools.model.GetCorrespondents200Response;
+import org.openapitools.model.GetDocument200Response;
+import org.openapitools.model.GetDocumentMetadata200Response;
+import org.openapitools.model.GetDocumentSuggestions200Response;
+import org.openapitools.model.GetDocumentTypes200Response;
+import org.openapitools.model.GetDocuments200Response;
+import org.openapitools.model.GetGroups200Response;
+import org.openapitools.model.GetSavedViews200Response;
+import org.openapitools.model.GetStoragePaths200Response;
+import org.openapitools.model.GetTags200Response;
+import org.openapitools.model.GetTasks200ResponseInner;
+import org.openapitools.model.GetUISettings200Response;
+import org.openapitools.model.GetUsers200Response;
+import org.openapitools.model.GetUsers200ResponseResultsInner;
 import java.time.OffsetDateTime;
+import org.openapitools.model.SelectionData200Response;
+import org.openapitools.model.SelectionDataRequest;
+import org.openapitools.model.Statistics200Response;
+import org.openapitools.model.UpdateCorrespondent200Response;
+import org.openapitools.model.UpdateCorrespondentRequest;
+import org.openapitools.model.UpdateDocument200Response;
+import org.openapitools.model.UpdateDocumentRequest;
+import org.openapitools.model.UpdateDocumentType200Response;
+import org.openapitools.model.UpdateDocumentTypeRequest;
+import org.openapitools.model.UpdateGroup200Response;
+import org.openapitools.model.UpdateGroupRequest;
+import org.openapitools.model.UpdateStoragePath200Response;
+import org.openapitools.model.UpdateStoragePathRequest;
+import org.openapitools.model.UpdateTag200Response;
+import org.openapitools.model.UpdateTagRequest;
+import org.openapitools.model.UpdateUserRequest;
 import org.openapitools.model.UserInfo;
 
 
@@ -35,9 +72,9 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-09-23T13:14:42.637996Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-10-10T06:36:40.060738Z[Etc/UTC]")
 @Controller
-@RequestMapping("${openapi.mockServer.base-path:}")
+@RequestMapping("${openapi.paperlessRestServer.base-path:}")
 public class ApiApiController implements ApiApi {
 
     private final NativeWebRequest request;

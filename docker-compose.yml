@@ -1,0 +1,15 @@
+version: "1.0"
+services:
+  frontend:
+    image: paperless:nginx
+    build:
+      dockerfile: ui/Dockerfile
+    ports:
+      - "8080:80"
+  backend:
+    image: paperless:openjdk
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "8088:8088"
+

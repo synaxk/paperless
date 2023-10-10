@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
     basePackages = {"org.openapitools", "org.openapitools.api" , "org.openapitools.configuration"},
     nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class
 )
-@CrossOrigin(origins = "http://localhost:8080")
 public class OpenApiGeneratorApplication {
 
     public static void main(String[] args) {

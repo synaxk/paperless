@@ -12,4 +12,16 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8088:8088"
-
+  persistence:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - paperless_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: paperless_db
+volumes:
+  paperless_data:

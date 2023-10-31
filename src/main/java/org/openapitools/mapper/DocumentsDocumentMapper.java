@@ -14,4 +14,13 @@ public interface DocumentsDocumentMapper extends IMapper<Document, DocumentsDocu
     DocumentsDocumentMapper INSTANCE = Mappers.getMapper(DocumentsDocumentMapper.class);
 
 
+    @Override
+    default Document toEntity(DocumentsDocument documentsDocument) {
+        return null;
+    }
+
+    @Override
+    default DocumentsDocument toDto(Document document) {
+        return null;
+    }
 }

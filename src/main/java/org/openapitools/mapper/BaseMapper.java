@@ -3,8 +3,24 @@ package org.openapitools.mapper;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public interface BaseMapper<Entity, Dto> {
-    Entity toEntity(Dto dto);
-    Dto toDto(Entity entity);
+    Entity dtoToEntity(Dto dto);
+    Dto entityToDto(Entity entity);
+
+/*
+    default String map(JsonNullable<String> value) {
+
+        if(value == null || !value.isPresent()) {
+            return null;
+        }
+
+        return value.get();
+    }
+
+    default JsonNullable<String> map(String value) {
+        return JsonNullable.of(value);
+    }
+*/
+
 
     default <T> T map(JsonNullable<T> value) {
         if(value == null || !value.isPresent()) {
@@ -17,5 +33,6 @@ public interface BaseMapper<Entity, Dto> {
     default <T> JsonNullable<T> map(T value) {
         return JsonNullable.of(value);
     }
+
 
 }

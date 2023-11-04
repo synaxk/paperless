@@ -8,6 +8,7 @@ class OpenApiGeneratorApplicationTests {
 
     @Test
     void contextLoads() {
+        assert(true);
     }
 
 }

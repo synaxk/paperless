@@ -31,10 +31,10 @@ public class AuthPermission {
     private String codename;
 
     @OneToMany(mappedBy = "permission")
-    private Set<AuthGroupPermissions> permissionAuthGroupPermissionses;
+    private Set<AuthGroupPermissions> permissionGroupPermissions;
 
     @OneToMany(mappedBy = "permission")
-    private Set<AuthUserUserPermissions> permissionAuthUserUserPermissionses;
+    private Set<AuthUserUserPermissions> permissionUserPermissions;
 
     public Integer getId() {
         return id;
@@ -68,22 +68,22 @@ public class AuthPermission {
         this.codename = codename;
     }
 
-    public Set<AuthGroupPermissions> getPermissionAuthGroupPermissionses() {
-        return permissionAuthGroupPermissionses;
+    public Set<AuthGroupPermissions> getPermissionGroupPermissions() {
+        return permissionGroupPermissions;
     }
 
-    public void setPermissionAuthGroupPermissionses(
+    public void setPermissionGroupPermissions(
             final Set<AuthGroupPermissions> permissionAuthGroupPermissionses) {
-        this.permissionAuthGroupPermissionses = permissionAuthGroupPermissionses;
+        this.permissionGroupPermissions = permissionAuthGroupPermissionses;
     }
 
-    public Set<AuthUserUserPermissions> getPermissionAuthUserUserPermissionses() {
-        return permissionAuthUserUserPermissionses;
+    public Set<AuthUserUserPermissions> getPermissionUserPermissions() {
+        return permissionUserPermissions;
     }
 
-    public void setPermissionAuthUserUserPermissionses(
+    public void setPermissionUserPermissions(
             final Set<AuthUserUserPermissions> permissionAuthUserUserPermissionses) {
-        this.permissionAuthUserUserPermissionses = permissionAuthUserUserPermissionses;
+        this.permissionUserPermissions = permissionAuthUserUserPermissionses;
     }
 
 }

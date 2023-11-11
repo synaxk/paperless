@@ -49,7 +49,7 @@ public abstract class GetDocument200ResponseMapper implements BaseMapper<Documen
     @Mapping(target = "documentType", source = "documentType", qualifiedByName = "documentTypeEntity")
     @Mapping(target = "storagePath", source = "storagePath", qualifiedByName = "storagePathEntity")
     @Mapping(target = "tags", source = "documentTagsEntities", qualifiedByName = "tagsEntity")
-    @Mapping(target = "createdDate", source = "created", qualifiedByName = "createdToCreatedDate")
+    @Mapping(target = "createdDate", source = "created")
     @Mapping(target = "owner", source = "owner", qualifiedByName = "ownerEntity")
     @Mapping(target = "permissions", source = "owner", qualifiedByName = "permissionsEntity")
     @Mapping(target = "notes", source = "documentNoteEntities", qualifiedByName = "notesEntity")
@@ -100,9 +100,16 @@ public abstract class GetDocument200ResponseMapper implements BaseMapper<Documen
     }
 
     // map created to createdDate (Date without the time)
-    @Named("createdToCreatedDate")
     OffsetDateTime mapCreatedDate(OffsetDateTime value) {
         return value!=null ? value.withOffsetSameInstant(ZoneOffset.UTC).toLocalDate().atStartOfDay().atOffset(ZoneOffset.UTC) : null;
+    }
+
+    OffsetDateTime map(String value){
+        return value != null ? OffsetDateTime.parse(value) : null;
+    }
+
+    String map (OffsetDateTime value){
+        return value != null ? value.toString() : null;
     }
 
     @Named("correspondentDto")

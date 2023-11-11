@@ -8,6 +8,7 @@ import org.paperless.model.get.GetDocuments200Response;
 import org.paperless.persistence.entities.DocumentEntity;
 import org.paperless.persistence.repositories.DocumentsDocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +25,7 @@ public class DocumentServiceImpl implements DocumentService{
     @Autowired
     private GetDocument200ResponseMapper getDocument200ResponseMapper;
     @Autowired
-    public DocumentServiceImpl(DocumentsDocumentRepository documentRepository){
+    public DocumentServiceImpl(@Qualifier("documentsDocumentRepository") DocumentsDocumentRepository documentRepository){
         this.documentRepository = documentRepository;
     }
     @Override

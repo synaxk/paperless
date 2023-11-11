@@ -47,11 +47,13 @@ public abstract class DocumentNotesMapper implements BaseMapper<NoteEntity, Docu
         return document.getId();
     }
 
-    @Named("createdEntity")
     String map(OffsetDateTime created) {
-        return created.toString();
+        return created != null ? created.toString() : null;
     }
 
+    OffsetDateTime map(String value){
+        return value != null ? OffsetDateTime.parse(value) : null;
+    }
     @Named("userDto")
     AuthUser mapCorrespondent(Integer value) {
         return userRepository.findById(value).orElse(null);
@@ -61,4 +63,6 @@ public abstract class DocumentNotesMapper implements BaseMapper<NoteEntity, Docu
     DocumentEntity mapDocument(Integer value) {
         return documentRepository.findById(value).orElse(null);
     }
+
+
 }

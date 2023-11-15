@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-@Service
+
 public abstract class PermissionsMapper implements BaseMapper<AuthUser, PermissionsDTO> {
     @Autowired
     private DocumentsCorrespondentRepository correspondentRepository;

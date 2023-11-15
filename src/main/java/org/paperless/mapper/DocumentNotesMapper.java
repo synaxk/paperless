@@ -14,7 +14,7 @@ import java.time.OffsetDateTime;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-@Service
+
 public abstract class DocumentNotesMapper implements BaseMapper<NoteEntity, DocumentNoteDTO> {
     @Autowired
     private DocumentsCorrespondentRepository correspondentRepository;

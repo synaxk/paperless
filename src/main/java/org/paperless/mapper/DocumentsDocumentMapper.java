@@ -19,7 +19,7 @@ import java.util.Set;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-@Service
+
 public abstract class DocumentsDocumentMapper implements BaseMapper<DocumentEntity, DocumentDTO> {
     public static DocumentsDocumentMapper INSTANCE = Mappers.getMapper(DocumentsDocumentMapper.class);
 

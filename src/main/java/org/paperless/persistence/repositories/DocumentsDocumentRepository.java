@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Component
-@Repository("documentsDocumentRepository")
+@Repository
 public interface DocumentsDocumentRepository extends JpaRepository<DocumentEntity, Integer> {
 }

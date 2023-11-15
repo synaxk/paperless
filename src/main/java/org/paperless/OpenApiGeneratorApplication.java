@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FullyQualifiedAnnotationBeanNameGenerator;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(
     nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.FullyQualifiedAnnotationBeanNameGe
     basePackages = {"org.paperless", "org.paperless.api" , "org.paperless.configuration", "org.paperless.mapper", "org.paperless.persistence", "org.paperless.persistence.entities", "org.paperless.persistence.repositories", "org.paperless.service"},
     nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class
 )
+@EnableJpaRepositories("org.paperless.persistence.repositories")
 public class OpenApiGeneratorApplication {
 
     public static void main(String[] args) {

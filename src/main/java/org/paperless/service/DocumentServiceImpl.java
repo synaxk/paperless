@@ -25,7 +25,7 @@ public class DocumentServiceImpl implements DocumentService{
     @Autowired
     private GetDocument200ResponseMapper getDocument200ResponseMapper;
     @Autowired
-    public DocumentServiceImpl(@Qualifier("documentsDocumentRepository") DocumentsDocumentRepository documentRepository){
+    public DocumentServiceImpl(DocumentsDocumentRepository documentRepository){
         this.documentRepository = documentRepository;
     }
     @Override

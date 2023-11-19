@@ -55,8 +55,7 @@ public class ApiApiController implements ApiApi {
             documentDTO.setTags(JsonNullable.of(tags));
             documentDTO.setCorrespondent(JsonNullable.of(correspondent));
 
-
-            documentService.uploadDocument(documentDTO, document);
+            documentService.uploadDocument(documentDTO, document.get(0));
             return ResponseEntity.ok().build();
 
         } catch (Exception e) {

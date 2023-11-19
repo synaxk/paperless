@@ -32,5 +32,17 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=paperless
       - RABBITMQ_DEFAULT_PASS=paperless
+  minio:
+    image: minio/minio
+    container_name: paperless-minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ACCESS_KEY=paperless
+      - MINIO_SECRET_KEY=paperless
+      - MINIO_CONSOLE_ADDRESS=:9001
+    command: server /data
+
 volumes:
   paperless_data:

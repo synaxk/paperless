@@ -23,5 +23,14 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: paperless_db
+  rabbitmq:
+    image: rabbitmq:3.12.8-management
+    container_name: paperless-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=paperless
+      - RABBITMQ_DEFAULT_PASS=paperless
 volumes:
   paperless_data:

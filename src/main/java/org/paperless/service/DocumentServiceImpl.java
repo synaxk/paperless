@@ -1,10 +1,13 @@
 package org.paperless.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.paperless.mapper.DocumentsDocumentMapper;
 import org.paperless.mapper.GetDocument200ResponseMapper;
 import org.paperless.model.DocumentDTO;
 import org.paperless.model.get.GetDocument200Response;
 import org.paperless.model.get.GetDocuments200Response;
+import org.paperless.model.update.UpdateDocument200Response;
+import org.paperless.model.update.UpdateDocumentRequest;
 import org.paperless.persistence.entities.DocumentEntity;
 import org.paperless.persistence.repositories.DocumentsDocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +23,15 @@ import java.util.List;
 @Service
 public class DocumentServiceImpl implements DocumentService{
     private final DocumentsDocumentRepository documentRepository;
+    private final DocumentsDocumentMapper documentMapper;
+    private final GetDocument200ResponseMapper getDocument200ResponseMapper;
+    private final RabbitMQService rabbitMQService;
     @Autowired
-    private DocumentsDocumentMapper documentMapper;
-    @Autowired
-    private GetDocument200ResponseMapper getDocument200ResponseMapper;
-    @Autowired
-    public DocumentServiceImpl(DocumentsDocumentRepository documentRepository){
+    public DocumentServiceImpl(DocumentsDocumentRepository documentRepository, DocumentsDocumentMapper documentMapper, GetDocument200ResponseMapper getDocument200ResponseMapper, RabbitMQService rabbitMQSender){
         this.documentRepository = documentRepository;
+        this.documentMapper = documentMapper;
+        this.getDocument200ResponseMapper = getDocument200ResponseMapper;
+        this.rabbitMQService = rabbitMQSender;
     }
     @Override
     public GetDocument200Response getDocument(Integer id, Integer page, Boolean fullPerms) {
@@ -52,6 +57,8 @@ public class DocumentServiceImpl implements DocumentService{
         documentToBeSaved.setStorageType("pdf");
         documentToBeSaved.setMimeType("pdf");
 
+        rabbitMQService.sendToOcrDocumentInQueue(documentToBeSaved.getStoragePath().getPath());
+
         documentRepository.save(documentToBeSaved);
     }
 
@@ -70,6 +77,10 @@ public class DocumentServiceImpl implements DocumentService{
         return ResponseEntity.ok(sampleResponse);
     }
 
+    @Override
+    public ResponseEntity<UpdateDocument200Response> updateDocument(Integer id, UpdateDocumentRequest updateDocumentRequest) {
+        return null;
+    }
 
 
 //    @Override

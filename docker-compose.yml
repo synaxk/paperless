@@ -12,6 +12,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8088:8088"
+    depends_on:
+      minio:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+      persistence:
+        condition: service_healthy
   persistence:
     image: postgres
     restart: always
@@ -23,6 +30,11 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: paperless_db
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "paperless"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
   rabbitmq:
     image: rabbitmq:3.12.8-management
     container_name: paperless-rabbitmq
@@ -43,6 +55,5 @@ services:
       - MINIO_SECRET_KEY=paperless
       - MINIO_CONSOLE_ADDRESS=:9001
     command: server /data
-
 volumes:
   paperless_data:

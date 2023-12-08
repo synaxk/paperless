@@ -65,15 +65,15 @@ public class DocumentServiceImpl implements DocumentService{
     @Override
     public void uploadDocument(DocumentDTO documentDTO, MultipartFile document) {
         // TODO: document variable is unused yet
-
         documentDTO.setCreated(OffsetDateTime.now());
         documentDTO.setAdded(OffsetDateTime.now());
         documentDTO.setModified(OffsetDateTime.now());
         documentDTO.content("");
         documentDTO.setAdded(OffsetDateTime.now());
-
+        System.out.println("###### Test vor Mapper");
 
         DocumentEntity documentToBeSaved = documentMapper.dtoToEntity(documentDTO);
+        System.out.println("###### Test nach Mapper");
 
         documentToBeSaved.setChecksum("checksum");
         documentToBeSaved.setStorageType("pdf");

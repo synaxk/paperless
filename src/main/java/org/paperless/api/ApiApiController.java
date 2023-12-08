@@ -7,6 +7,7 @@ import org.paperless.model.get.GetDocument200Response;
 import org.paperless.model.get.GetDocuments200Response;
 import org.paperless.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,6 @@ import javax.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-10-10T06:36:40.060738Z[Etc/UTC]")
 @Controller
 @RequestMapping("${openapi.paperlessRestServer.base-path:}")
-@CrossOrigin(origins = "http://localhost:8080")
 public class ApiApiController implements ApiApi {
     private final DocumentService documentService;
 
@@ -51,15 +51,22 @@ public class ApiApiController implements ApiApi {
             documentDTO.setTitle(JsonNullable.of(title == null ? name : title));
             documentDTO.setOriginalFileName(JsonNullable.of(name));
             documentDTO.setCreated(created);
-            documentDTO.setDocumentType(JsonNullable.of(documentType));
+            documentDTO.setDocumentType(JsonNullable.of(1)); //documentType
             documentDTO.setTags(JsonNullable.of(tags));
-            documentDTO.setCorrespondent(JsonNullable.of(correspondent));
+            documentDTO.setCorrespondent(JsonNullable.of(1)); //correspondent
 
-            documentService.uploadDocument(documentDTO, document.get(0));
-            return ResponseEntity.ok().build();
+            MultipartFile file = document.get(0);
+
+            if(file == null || file.isEmpty()){
+                return ResponseEntity.badRequest().build();
+            }
+
+            documentService.uploadDocument(documentDTO, file);
+            return new ResponseEntity<>(HttpStatus.CREATED);
 
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("###### HALLO!!!!!! ##########");
             return ResponseEntity.internalServerError().build();
         }
 

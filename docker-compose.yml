@@ -32,6 +32,7 @@ services:
       - POSTGRES_USER=paperless
       - POSTGRES_PASSWORD=paperless
       - POSTGRES_DB=paperless
+      - PGDATA=/var/lib/postgresql/data/db
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
     healthcheck:

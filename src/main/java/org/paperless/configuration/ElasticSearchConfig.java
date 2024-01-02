@@ -1,4 +1,4 @@
-package org.paperless.tesseract.config;
+package org.paperless.configuration;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
@@ -22,8 +22,8 @@ public class ElasticSearchConfig
 {
     public static final String DOCUMENTS_INDEX_NAME = "paperless-index";
 
-    //@Value("${elasticsearch.host}")
-    private String host = "paperless-elasticsearch";
+    @Value("${elasticsearch.host}")
+    private String host;
     @Value("${elasticsearch.port}")
     private int port;
 

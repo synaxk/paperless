@@ -43,17 +43,19 @@ public class DocumentServiceImpl implements DocumentService{
     private final GetDocument200ResponseMapper getDocument200ResponseMapper;
     private final RabbitMQService rabbitMQService;
     private final MinioClient minioClient;
+    private final ElasticSearchService elasticSearchService;
 
     @Value("${minio.bucketName}")
     private String bucketName;
 
     @Autowired
-    public DocumentServiceImpl(DocumentsDocumentRepository documentRepository, DocumentsDocumentMapper documentMapper, GetDocument200ResponseMapper getDocument200ResponseMapper, RabbitMQService rabbitMQSender, MinioClient minioClient){
+    public DocumentServiceImpl(DocumentsDocumentRepository documentRepository, DocumentsDocumentMapper documentMapper, GetDocument200ResponseMapper getDocument200ResponseMapper, RabbitMQService rabbitMQSender, MinioClient minioClient, ElasticSearchService elasticSearchService){
         this.documentRepository = documentRepository;
         this.documentMapper = documentMapper;
         this.getDocument200ResponseMapper = getDocument200ResponseMapper;
         this.rabbitMQService = rabbitMQSender;
         this.minioClient = minioClient;
+        this.elasticSearchService = elasticSearchService;
     }
     @Override
     public GetDocument200Response getDocument(Integer id, Integer page, Boolean fullPerms) {
@@ -113,16 +115,32 @@ public class DocumentServiceImpl implements DocumentService{
 
 
     @Override
-    public ResponseEntity<GetDocuments200Response> getDocuments(Integer page, Integer pageSize, String query, String ordering, List<Integer> tagsIdAll, Integer documentTypeId, Integer storagePathIdIn, Integer correspondentId, Boolean truncateContent) {
+    public ResponseEntity<GetDocuments200Response> getDocuments(Integer page, Integer pageSize, String query, String ordering, List<Integer> tagsIdAll, Integer documentTypeId, Integer storagePathIdIn, Integer correspondentId, Boolean truncateContent) throws IOException {
         List<DocumentDTO> documentDTOS = new ArrayList<>();
-        for (DocumentEntity document : documentRepository.findAll()) {
-            documentDTOS.add(documentMapper.entityToDto(document));
+
+        if(query == null || query.isEmpty()) {
+            for (DocumentEntity document : documentRepository.findAll()) {
+                documentDTOS.add(documentMapper.entityToDto(document));
+            }
+        } else {
+            //search with elasticsearch
+            for (DocumentEntity document : elasticSearchService.searchDocument(query)) {
+                documentDTOS.add(documentMapper.entityToDto(document));
+            }
         }
 
 
+
         GetDocuments200Response sampleResponse = new GetDocuments200Response();
-        // We will need GetDocuments200ResponseResultsInner dtos here....
-        // sampleResponse.addResultsItem()
+        sampleResponse.setCount(100);
+        sampleResponse.setNext(1);
+        sampleResponse.setPrevious(1);
+        sampleResponse.addAllItem(1);
+
+        for(DocumentDTO documentDTO : documentDTOS) {
+            sampleResponse.addResultsItem(documentDTO.toGetDocuments200ResponseResultsInner());
+        }
+
         return ResponseEntity.ok(sampleResponse);
     }
 

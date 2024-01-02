@@ -2,8 +2,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.openapitools</groupId>
     <artifactId>openapi-spring</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>openapi-spring</name>
+    <modules>
+        <module>tesseract</module>
+    </modules>
     <version>1.0</version>
     <properties>
         <java.version>1.8</java.version>

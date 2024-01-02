@@ -60,3 +60,31 @@ services:
       - MINIO_SECRET_KEY=paperless
       - MINIO_CONSOLE_ADDRESS=:9001
     command: server /data
+  elasticsearch:
+    image: elasticsearch:8.7.1
+    container_name: paperless-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "xpack.security.enabled=false"
+      - "xpack.security.enrollment.enabled=false"
+      - ELASTIC_PASSWORD=paperless
+    ports:
+      - 9200:9200
+      - 9300:9300
+  tesseract:
+    build:
+      context: ./tesseract
+      dockerfile: Dockerfile
+    container_name: paperless-tesseract
+    depends_on:
+      minio:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+      elasticsearch:
+        condition: service_started
+      persistence:
+        condition: service_healthy

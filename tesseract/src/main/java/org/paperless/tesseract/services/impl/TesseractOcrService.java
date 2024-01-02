@@ -3,6 +3,8 @@ package org.paperless.tesseract.services.impl;
 import org.paperless.tesseract.config.RabbitMQConfig;
 import org.paperless.tesseract.services.OcrService;
 import org.paperless.tesseract.services.SearchIndexService;
+import org.paperless.tesseract.services.StorageFileNotFoundException;
+import org.paperless.tesseract.services.StorageService;
 import org.paperless.tesseract.services.dto.DocumentDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,21 +30,21 @@ import java.time.OffsetDateTime;
 @Component
 @Slf4j
 public class TesseractOcrService implements OcrService {
-    //private final StorageService storageService;
-  //  private final SearchIndexService searchIndexService;
+    private final StorageService storageService;
+    private final SearchIndexService searchIndexService;
 
- //   private final String tesseractData;
+    private final String tesseractData;
 
-/*  @Autowired
-    public TesseractOcrService(StorageService storageService, SearchIndexService searchIndexService, @Value("${tesseract.data}") String tessData) {
+    @Autowired
+    public TesseractOcrService(StorageService storageService, SearchIndexService searchIndexService, @Value("${ocr.tessdata}") String tessData) {
         this.storageService = storageService;
         this.searchIndexService = searchIndexService;
         this.tesseractData = tessData;
-    }*/
+    }
 
     @Override
     @RabbitListener(queues = RabbitMQConfig.OCR_QUEUE_NAME)
-    public void processMessage(String message,  @Header(RabbitMQConfig.DOCUMENT_STORAGE_PATH_PROPERTY_NAME) String storagePath) throws JsonProcessingException {
+    public void processMessage(String message,  @Header(RabbitMQConfig.DOCUMENT_STORAGE_PATH_PROPERTY_NAME) String storagePath) throws StorageFileNotFoundException, JsonProcessingException {
         log.info("Received Message: " + message);
 
         ObjectMapper mapper = new ObjectMapper();
@@ -55,7 +57,7 @@ public class TesseractOcrService implements OcrService {
         log.debug("Received Document storage path: " + storagePath);
 
         // fetch document file
-  /*      var doc = storageService.loadAsResource(storagePath);   // TODO: use StorageService via HTTP REST-Call
+        var doc = storageService.loadAsResource(storagePath);   // TODO: use StorageService via HTTP REST-Call
         if ( doc==null || !doc.exists() )
             throw new StorageFileNotFoundException(storagePath);
 
@@ -77,14 +79,14 @@ public class TesseractOcrService implements OcrService {
             searchIndexService.indexDocument(document);
         } catch (IOException e) {
             log.error(e.getMessage());
-        }*/
+        }
     }
 
-  /*  public String doOCR(File tempFile) throws TesseractException {
+    public String doOCR(File tempFile) throws TesseractException {
         var tesseract = new Tesseract();
         tesseract.setDatapath(tesseractData);
         return tesseract.doOCR(tempFile);
-    }*/
+    }
 
     public static File createTempFile(String storagePath, InputStream is) throws IOException {
         File tempFile = File.createTempFile(StringUtils.getFilename(storagePath), "." + StringUtils.getFilenameExtension(storagePath));
@@ -101,4 +103,3 @@ public class TesseractOcrService implements OcrService {
 
 
 }
-

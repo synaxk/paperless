@@ -5,6 +5,7 @@ import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFacto
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.amqp.SimpleRabbitListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,15 @@ import org.springframework.util.ErrorHandler;
 
 @Configuration
 public class RabbitMQConfig {
+
+    @Value("${rabbitmq.endpoint}")
+    private String endpoint;
+
+    @Value("${rabbitmq.username}")
+    private String username;
+
+    @Value("${rabbitmq.password}")
+    private String password;
 
     public static final String OCR_QUEUE_NAME = "OCR_In";
     public static final String DOCUMENT_STORAGE_PATH_PROPERTY_NAME = "FileStoragePath";
@@ -24,9 +34,9 @@ public class RabbitMQConfig {
 
     @Bean
     public ConnectionFactory connectionFactory() {
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
-        connectionFactory.setUsername("guest");
-        connectionFactory.setPassword("guest");
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(endpoint);
+        connectionFactory.setUsername(username);
+        connectionFactory.setPassword(password);
         return connectionFactory;
     }
 

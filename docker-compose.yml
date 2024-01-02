@@ -59,6 +59,9 @@ services:
       - MINIO_ACCESS_KEY=paperless
       - MINIO_SECRET_KEY=paperless
       - MINIO_CONSOLE_ADDRESS=:9001
+      - MINIO_ROOT_USER=paperless
+      - MINIO_ROOT_PASSWORD=paperless
+
     command: server /data
   elasticsearch:
     image: elasticsearch:8.7.1

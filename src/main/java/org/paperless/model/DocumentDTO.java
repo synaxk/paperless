@@ -13,6 +13,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.paperless.model.get.GetDocuments200ResponseResultsInner;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.Valid;
@@ -426,6 +427,25 @@ public class DocumentDTO {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
+  }
+  public GetDocuments200ResponseResultsInner toGetDocuments200ResponseResultsInner(){
+    return new GetDocuments200ResponseResultsInner()
+            .id(id)
+            .correspondent(correspondent.isPresent() ? correspondent.get() : null)
+            .documentType(documentType.isPresent() ? documentType.get() : null)
+            .storagePath(storagePath.isPresent() ? storagePath.get() : null)
+            .title(title.isPresent() ? title.get() : null)
+            .content(content.isPresent() ? content.get() : null)
+            .tags(tags.isPresent() ? tags.get() : null)
+            .created(created == null ? null : created.toString())
+            .createdDate(createdDate == null ? null : createdDate.toString())
+            .modified(modified == null ? null : modified.toString())
+            .added(added == null ? null : added.toString())
+            .archiveSerialNumber(archiveSerialNumber.isPresent() ? Integer.valueOf(archiveSerialNumber.get()) : null)
+            .originalFileName(originalFileName.isPresent() ? originalFileName.get() : null)
+            .archivedFileName(archivedFileName.isPresent() ? archivedFileName.get() : null)
+            .owner(1)
+            .userCanChange(true);
   }
 }
 

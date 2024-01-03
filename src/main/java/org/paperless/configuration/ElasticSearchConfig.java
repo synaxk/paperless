@@ -24,9 +24,7 @@ import org.springframework.context.annotation.Configuration;
 public class ElasticSearchConfig
 {
     public static final String DOCUMENTS_INDEX_NAME = "paperless-index";
-
-    @Value("${elasticsearch.host}")
-    private String host;
+    private final String host = "paperless-elasticsearch";
     @Value("${elasticsearch.port}")
     private int port;
 

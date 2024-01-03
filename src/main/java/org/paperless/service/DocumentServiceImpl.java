@@ -125,7 +125,7 @@ public class DocumentServiceImpl implements DocumentService{
             for (DocumentEntity document : documentRepository.findAll()) {
                 documentDTOS.add(documentMapper.entityToDto(document));
             }
-            logger.info("Searching for all documents");
+            logger.info("Query was empty. Searching for all documents");
         } else {
             //search with elasticsearch
             for (DocumentEntity document : elasticSearchService.searchDocument(query)) {
@@ -143,6 +143,7 @@ public class DocumentServiceImpl implements DocumentService{
         sampleResponse.addAllItem(1);
 
         for(DocumentDTO documentDTO : documentDTOS) {
+            // transform a dto into a GetDocuments200ResponseResultsInner to attach it to the response
             sampleResponse.addResultsItem(documentDTO.toGetDocuments200ResponseResultsInner());
         }
 

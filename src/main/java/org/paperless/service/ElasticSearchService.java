@@ -16,6 +16,8 @@ import org.paperless.mapper.DocumentsDocumentMapper;
 import org.paperless.mapper.GetDocument200ResponseMapper;
 import io.minio.MinioClient;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +31,7 @@ import java.util.Optional;
 public class ElasticSearchService implements SearchIndexService {
     private final ElasticsearchClient esClient;
     private final DocumentsDocumentRepository documentRepository;
+    private final Logger logger = LoggerFactory.getLogger(ElasticSearchService.class);
 
     @Autowired
     public ElasticSearchService(ElasticsearchClient esClient, DocumentsDocumentRepository documentRepository) throws IOException {
@@ -46,9 +49,9 @@ public class ElasticSearchService implements SearchIndexService {
 
         assert response.hits().total() != null;
         if (response.hits().total().value() != 0) {
-          //  log.info("Found {} documents", response.hits().total().value());
+          logger.info("Found {} documents", response.hits().total().value());
         } else {
-         //   log.info("No documents found");
+         logger.info("No documents found");
         }
 
         return extractDocuments(response.hits());
@@ -74,7 +77,7 @@ public class ElasticSearchService implements SearchIndexService {
             Optional<DocumentEntity> document = documentRepository.findById(documentId);
             document.ifPresent(documentEntities::add);
         }
-
+        logger.info("Extracted {} documents", documentEntities.size());
         return documentEntities;
     }
 

@@ -26,6 +26,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -44,6 +46,7 @@ public class DocumentServiceImpl implements DocumentService{
     private final RabbitMQService rabbitMQService;
     private final MinioClient minioClient;
     private final ElasticSearchService elasticSearchService;
+    private final Logger logger = LoggerFactory.getLogger(DocumentServiceImpl.class);
 
     @Value("${minio.bucketName}")
     private String bucketName;
@@ -72,10 +75,8 @@ public class DocumentServiceImpl implements DocumentService{
         documentDTO.setModified(OffsetDateTime.now());
         documentDTO.content("");
         documentDTO.setAdded(OffsetDateTime.now());
-        System.out.println("###### Test vor Mapper");
 
         DocumentEntity documentToBeSaved = documentMapper.dtoToEntity(documentDTO);
-        System.out.println("###### Test nach Mapper");
 
         documentToBeSaved.setChecksum("checksum");
         documentToBeSaved.setStorageType("pdf");
@@ -94,7 +95,7 @@ public class DocumentServiceImpl implements DocumentService{
                             .build()
             );
         } catch (ErrorResponseException | InsufficientDataException | InternalException | InvalidKeyException | InvalidResponseException | IOException | NoSuchAlgorithmException | ServerException | XmlParserException e) {
-            //log.error("Error while uploading file to Minio.");
+            logger.error("Error while uploading file to Minio. Error: {}", e.getMessage());
             throw new RuntimeException(e);
         }
 
@@ -111,6 +112,7 @@ public class DocumentServiceImpl implements DocumentService{
         rabbitMQService.sendToOcrDocumentInQueue(documentToBeSaved.getStoragePath().getPath());
 
         documentRepository.save(documentToBeSaved);
+        logger.info("Document {} was saved", documentToBeSaved.getTitle());
     }
 
 
@@ -119,14 +121,17 @@ public class DocumentServiceImpl implements DocumentService{
         List<DocumentDTO> documentDTOS = new ArrayList<>();
 
         if(query == null || query.isEmpty()) {
+            //find all documents
             for (DocumentEntity document : documentRepository.findAll()) {
                 documentDTOS.add(documentMapper.entityToDto(document));
             }
+            logger.info("Searching for all documents");
         } else {
             //search with elasticsearch
             for (DocumentEntity document : elasticSearchService.searchDocument(query)) {
                 documentDTOS.add(documentMapper.entityToDto(document));
             }
+            logger.info("Searching for documents matching '{}'", query);
         }
 
 
@@ -141,6 +146,7 @@ public class DocumentServiceImpl implements DocumentService{
             sampleResponse.addResultsItem(documentDTO.toGetDocuments200ResponseResultsInner());
         }
 
+        logger.info("Returning found documents");
         return ResponseEntity.ok(sampleResponse);
     }
 
@@ -148,12 +154,6 @@ public class DocumentServiceImpl implements DocumentService{
     public ResponseEntity<UpdateDocument200Response> updateDocument(Integer id, UpdateDocumentRequest updateDocumentRequest) {
         return null;
     }
-
-
-//    @Override
-//    public DocumentsDocument uploadDocument(String title, OffsetDateTime created, Integer documentType, List<Integer> tags, Integer correspondent, List<MultipartFile> document) {
-//        return documentRepository.save();
-//    }
 
 
     private String generateRandomName() {

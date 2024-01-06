@@ -3,9 +3,12 @@ package org.paperless.mapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.paperless.model.DocumentDTO;
 import org.paperless.persistence.entities.*;
@@ -23,28 +26,22 @@ import java.util.HashSet;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class})
+//@SpringBootTest
+//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class})
+@ExtendWith(MockitoExtension.class)
 class DocumentDTOEntityMapperTest {
 
-    @MockBean
+    @Mock
     private DocumentsCorrespondentRepository correspondentRepository;
-    @MockBean
+    @Mock
     private DocumentsDocumenttypeRepository documentTypeRepository;
-    @MockBean
+    @Mock
     private DocumentsStoragepathRepository storagePathRepository;
-    @MockBean
-    private AuthUserRepository userRepository;
-    @MockBean
+    @Mock
     private DocumentsDocumentTagsRepository documentTagsRepository;
 
     @InjectMocks
-    private final DocumentsDocumentMapper documentMapper = DocumentsDocumentMapper.INSTANCE;
-
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
+    private DocumentsDocumentMapperImpl documentMapper;
 
     @Test
     @DisplayName("Map DTO to entity")
@@ -68,14 +65,11 @@ class DocumentDTOEntityMapperTest {
         storagePath.setId(3);
         DocumentTagsEntity documentTags = new DocumentTagsEntity();
         documentTags.setId(4);
-        AuthUser authUser = new AuthUser();
-        authUser.setId(5);
 
 
         Mockito.when(correspondentRepository.findById(1)).thenReturn(java.util.Optional.of(correspondent));
         Mockito.when(documentTypeRepository.findById(2)).thenReturn(java.util.Optional.of(documentType));
         Mockito.when(storagePathRepository.findById(3)).thenReturn(java.util.Optional.of(storagePath));
-        Mockito.when(userRepository.findById(5)).thenReturn(java.util.Optional.of(authUser));
         Mockito.when(documentTagsRepository.findAllById(Collections.singletonList(4))).thenReturn(Collections.singletonList(documentTags));
 
         DocumentEntity document = documentMapper.dtoToEntity(documentDTO);

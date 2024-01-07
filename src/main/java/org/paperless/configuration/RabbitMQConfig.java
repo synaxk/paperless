@@ -24,6 +24,7 @@ public class RabbitMQConfig {
 
     public static final String OCR_DOCUMENT_IN_QUEUE_NAME = "ORC_DOCUMENT_IN";
     public static final String OCR_DOCUMENT_OUT_QUEUE_NAME = "ORC_DOCUMENT_OUT";
+    public static final String DOCUMENT_STORAGE_PATH_PROPERTY_NAME = "FileStoragePath";
 
     @Bean
     public Queue ocrDocumentInQueue() {

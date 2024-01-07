@@ -1,7 +1,12 @@
 package org.paperless.service;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import io.minio.MinioClient;
 import lombok.extern.slf4j.Slf4j;
+import org.openapitools.jackson.nullable.JsonNullableModule;
 import org.paperless.mapper.DocumentsDocumentMapper;
 import org.paperless.mapper.GetDocument200ResponseMapper;
 import org.paperless.model.DocumentDTO;
@@ -82,7 +87,10 @@ public class DocumentServiceImpl implements DocumentService{
         documentToBeSaved.setMimeType("pdf");
 
 
-        String objectName = generateRandomName() + getFileExtension(Objects.requireNonNull(document.getOriginalFilename()));
+        documentRepository.save(documentToBeSaved);
+
+
+        String objectName = documentToBeSaved.getId() + getFileExtension(Objects.requireNonNull(document.getOriginalFilename()));
 
         try {
             minioClient.putObject(
@@ -107,8 +115,20 @@ public class DocumentServiceImpl implements DocumentService{
 
         documentToBeSaved.setStoragePath(pathToFile);
 
+        documentDTO.setId(documentToBeSaved.getId());
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.registerModule(new JsonNullableModule());
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        String dtoJson = null;
+        try {
+            dtoJson = mapper.writeValueAsString(documentDTO);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
-        rabbitMQService.sendToOcrDocumentInQueue(documentToBeSaved.getStoragePath().getPath());
+
+        rabbitMQService.sendToOcrDocumentInQueue(dtoJson, objectName);
 
         documentRepository.save(documentToBeSaved);
     }

@@ -13,6 +13,9 @@ import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.openapitools.jackson.nullable.JsonNullableModule;
+import org.paperless.service.DocumentServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +24,6 @@ import org.springframework.context.annotation.Configuration;
 public class ElasticSearchConfig
 {
     public static final String DOCUMENTS_INDEX_NAME = "paperless-index";
-
     //@Value("${elasticsearch.host}")
     @Value("paperless-elasticsearch")
     private String host;
@@ -30,13 +32,11 @@ public class ElasticSearchConfig
 
     final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
 
-
     @Bean
     public RestClient getRestClient() {
         credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("elastic", "paperless"));
-        return RestClient.builder(
-                        new HttpHost(host, port))
-                .setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
+        return RestClient.builder(new HttpHost(host, port)).setHttpClientConfigCallback(
+                new RestClientBuilder.HttpClientConfigCallback() {
                     @Override
                     public HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder httpClientBuilder) {
                         return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);

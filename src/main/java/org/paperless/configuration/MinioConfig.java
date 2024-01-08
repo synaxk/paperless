@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MinioConfig {
-    @Value("${minio.endpoint}")
+    @Value("http://paperless-minio:9000")
     private String endpoint;
 
     @Value("${minio.accessKey}")

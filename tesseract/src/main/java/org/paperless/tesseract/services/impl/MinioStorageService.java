@@ -5,6 +5,7 @@ import io.minio.GetObjectArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
+import jakarta.annotation.PostConstruct;
 import org.paperless.tesseract.services.StorageException;
 import org.paperless.tesseract.services.StorageFileNotFoundException;
 import org.paperless.tesseract.services.StorageService;
@@ -31,32 +32,30 @@ import java.util.stream.Stream;
 public class MinioStorageService implements StorageService {
 
     private final String url;
-    private final String user;
-    private final String password;
+    private final String accesskey;
+    private final String secretkey;
     private final String bucket;
-    private final Path rootLocation;
 
     private MinioClient minioClient;
 
     @Autowired
-    public MinioStorageService(@Value("${miniostorage.url}") String url,
-                               @Value("${miniostorage.user}") String user,
-                               @Value("${miniostorage.password}") String password,
-                               @Value("${miniostorage.bucket}") String bucket,
-                               @Value("${miniostorage.path}") String path) {
+    public MinioStorageService(@Value("http://paperless-minio:9000") String url,
+                               @Value("${miniostorage.accesskey}") String accesskey,
+                               @Value("${miniostorage.secretkey}") String secretkey,
+                               @Value("${miniostorage.bucket}") String bucket) {
         this.url = url;
-        this.user = user;
-        this.password = password;
+        this.accesskey = accesskey;
+        this.secretkey = secretkey;
         this.bucket = bucket;
-        this.rootLocation = Paths.get(path);
     }
 
     @Override
+    @PostConstruct
     public void init() {
         minioClient =
                 MinioClient.builder()
                         .endpoint(url)
-                        .credentials(user, password)
+                        .credentials(accesskey, secretkey)
                         .build();
         // create the bucket on the minio-storage
         try {
@@ -69,12 +68,12 @@ public class MinioStorageService implements StorageService {
             // QUICKFIX, ignored when the BUCKET is already existing.
         }
 
-        try {
+  /*      try {
             Files.createDirectories(rootLocation);
         }
         catch (IOException e) {
             throw new StorageException("Could create temp directory", e);
-        }
+        }*/
     }
 
     @Override
@@ -109,7 +108,7 @@ public class MinioStorageService implements StorageService {
                              .object(filename)
                              .build())) {
             // Read the stream
-            Path outputPath = Path.of(rootLocation.toString(), filename);
+            Path outputPath = Path.of("/", filename);
             Files.copy(
                     stream,
                     outputPath,
@@ -144,6 +143,6 @@ public class MinioStorageService implements StorageService {
         // TODO: Delete in MinIO
 
         // Delete tmp directory
-        FileSystemUtils.deleteRecursively(rootLocation.toFile());
+   //     FileSystemUtils.deleteRecursively("/".toFile());
     }
 }

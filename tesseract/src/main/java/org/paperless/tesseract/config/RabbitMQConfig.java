@@ -14,7 +14,8 @@ import org.springframework.util.ErrorHandler;
 @Configuration
 public class RabbitMQConfig {
 
-    @Value("${rabbitmq.endpoint}")
+    //@Value("${rabbitmq.endpoint}")
+    @Value("paperless-rabbitmq")
     private String endpoint;
 
     @Value("${rabbitmq.username}")
@@ -23,7 +24,7 @@ public class RabbitMQConfig {
     @Value("${rabbitmq.password}")
     private String password;
 
-    public static final String OCR_QUEUE_NAME = "OCR_In";
+    public static final String OCR_QUEUE_NAME = "ORC_DOCUMENT_IN";
     public static final String DOCUMENT_STORAGE_PATH_PROPERTY_NAME = "FileStoragePath";
 
 

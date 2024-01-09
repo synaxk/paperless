@@ -22,7 +22,8 @@ public class ElasticSearchConfig
 {
     public static final String DOCUMENTS_INDEX_NAME = "paperless-index";
 
-    @Value("${elasticsearch.host}")
+    //@Value("${elasticsearch.host}")
+    @Value("paperless-elasticsearch")
     private String host;
     @Value("${elasticsearch.port}")
     private int port;

@@ -1,5 +1,6 @@
 package org.paperless.tesseract.services.impl;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.paperless.tesseract.config.RabbitMQConfig;
 import org.paperless.tesseract.services.OcrService;
 import org.paperless.tesseract.services.SearchIndexService;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.File;
@@ -44,12 +46,13 @@ public class TesseractOcrService implements OcrService {
 
     @Override
     @RabbitListener(queues = RabbitMQConfig.OCR_QUEUE_NAME)
-    public void processMessage(String message,  @Header(RabbitMQConfig.DOCUMENT_STORAGE_PATH_PROPERTY_NAME) String storagePath) throws StorageFileNotFoundException, JsonProcessingException {
+    public void processMessage(String message, @Header(RabbitMQConfig.DOCUMENT_STORAGE_PATH_PROPERTY_NAME) String storagePath) throws StorageFileNotFoundException, JsonProcessingException {
         log.info("Received Message: " + message);
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         mapper.registerModule(new JsonNullableModule());
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         // fetch document data
         DocumentDTO document = mapper.readValue( message, DocumentDTO.class);

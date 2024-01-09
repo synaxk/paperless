@@ -1,6 +1,8 @@
 package org.paperless.model;
 
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.OffsetDateTime;
@@ -8,11 +10,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.openapitools.jackson.nullable.JsonNullableModule;
 import org.paperless.model.get.GetDocuments200ResponseResultsInner;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -399,7 +404,7 @@ public class DocumentDTO {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Document {\n");
+    sb.append("{\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    correspondent: ").append(toIndentedString(correspondent)).append("\n");
     sb.append("    documentType: ").append(toIndentedString(documentType)).append("\n");
@@ -417,6 +422,8 @@ public class DocumentDTO {
     sb.append("}");
     return sb.toString();
   }
+
+
 
   /**
    * Convert the given object to string with each line indented by 4 spaces

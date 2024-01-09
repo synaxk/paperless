@@ -26,6 +26,7 @@ public class RabbitMQService {
             return m;
         });
         logger.info("Message '{}' sent to queue", message);
+
     }
 
 }
